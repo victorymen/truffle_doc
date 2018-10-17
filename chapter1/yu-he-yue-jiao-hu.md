@@ -101,9 +101,9 @@ MetaCoin.deployed().then(function(instance) {
 
 ### 进行交易
 
-我们可以执行MetaCoin合约上的三个函数。如果您分析它们中的每一个，您将看到这`sendCoin`是唯一一个旨在对网络进行更改的功能。目标`sendCoin`是从一个帐户“发送”一些元硬币到下一个帐户，这些变化应该持续存在。
+我们可以执行MetaCoin合约上的三个函数。如果您分析它们中的每一个，您将看到这`sendCoin`是唯一一个旨在对网络进行更改的功能。目标`sendCoin`是从一个帐户“发送”一些META币到下一个帐户，这些变化应该持续存在。
 
-在打电话时`sendCoin`，我们会将其作为交易执行。在下面的示例中，我们将以一种持续更改网络的方式从一个帐户向另一个帐户发送10个元硬币：
+在打电话时`sendCoin`，我们会将其作为交易执行。在下面的示例中，我们将以一种持续更改网络的方式从一个帐户向另一个帐户发送10META币：
 
 ```
 var account_one = "0x1234..."; // an address
@@ -232,7 +232,7 @@ MetaCoin.deployed().then(function(instance) {
 
 欲了解更多信息，请参阅[README](https://github.com/trufflesuite/truffle-contract)中`truffle-contract`的项目。
 
-### 添加新合同到网络
+### 添加新合约到网络
 
 在上述所有情况中，我们一直在使用已经部署的合同抽象。我们可以使用以下`.new()`功能将我们自己的版本部署到网络：
 
