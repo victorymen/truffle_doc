@@ -253,7 +253,7 @@ MetaCoin.new().then(function(instance) {
 var instance = MetaCoin.at("0x1234...");
 ```
 
-### 将以太送到合约中
+### 将以太发送到合约中
 
 您可能只想将Ether直接发送给合同，或触发合同的[后备功能](http://solidity.readthedocs.io/en/develop/contracts.html#fallback-function)。您可以使用以下两个选项之一来执行此操作。
 
