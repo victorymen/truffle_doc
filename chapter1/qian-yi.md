@@ -25,14 +25,13 @@ module.exports = function(deployer) {
   // deployment steps
   deployer.deploy(MyContract);
 };
-
 ```
 
 请注意，文件名以数字为前缀，后缀为描述。编号前缀是必需的，以便记录迁移是否成功运行。后缀纯粹是为了人类的可读性和理解力。
 
 ### artifacts.require（）
 
-在迁移开始时，我们告诉Truffle我们想要通过该`artifacts.require()`方法与哪些合同进行交互。这个方法类似于Node`require`，但在我们的例子中，它特别返回了一个契约抽象，我们可以在其余的部署脚本中使用它。指定的名称应与**该**源文件**中的合同定义的名称**匹配。不传递源文件的名称，因为文件可以包含多个合同。
+在迁移开始时，我们告诉Truffle我们想要通过该`artifacts.require()`方法与哪些合约进行交互。这个方法类似于Node`require`，但在我们的例子中，它特别返回了一个契约抽象，我们可以在其余的部署脚本中使用它。指定的名称应与**该**源文件**中的合约定义的名称**匹配。不传递源文件的名称，因为文件可以包含多个合同。
 
 考虑这个示例，其中在同一源文件中指定了两个合同：
 
@@ -69,7 +68,7 @@ var ContractTwo = artifacts.require("ContractTwo");
 
 ## 初始迁移
 
-Truffle要求您拥有迁移合同才能使用迁移功能。此合同必须包含特定的界面，但您可以随意编辑此合同。对于大多数项目，此合同最初将作为第一次迁移进行部署，不会再次更新。在创建新项目时，您也会默认收到此合同`truffle init`。
+Truffle要求您拥有迁移合约才能使用迁移功能。此合约必须包含特定的界面，但您可以随意编辑此合约。对于大多数项目，此合约第一次迁移时进行部署，不会再次更新。在创建新项目时，您也会默认收到此合约`truf                           fle init`。
 
 文件名：`contracts/Migrations.sol`
 
@@ -208,9 +207,9 @@ module.exports = function(deployer, network, accounts) {
     // a bunch of conditionals, we can simply use the `overwrite` key.
     deployer.deploy(SomeDependency, {overwrite: false});
 
-### deployer.link（图书馆，目的地）
+### deployer.link（library, destinations）
 
-将已部署的库链接到合同或多个合同。`destinations`可以是单个合同，也可以是多个合同的数组。如果目的地内的任何合同不依赖于链接的库，则合同将被忽略。
+将已部署的库链接到合约或多个合约。`destinations`可以是单个合约，也可以是多个合约的数组。如果目的地内的任何合约不依赖于链接的库，则合同将被忽略。
 
 例：
 
@@ -226,7 +225,7 @@ deployer.link(LibA, [B, C, D]);
 
 ### deployer.then（function（）{...}）
 
-就像承诺一样，运行任意部署步骤。使用此选项可在迁移期间调用特定的合同函数，以添加，编辑和重新组织合同数据。
+就像承诺一样，运行任意部署步骤。使用此选项可在迁移期间调用特定的合约函数，以添加，编辑和重新组织合约数据。
 
 例：
 

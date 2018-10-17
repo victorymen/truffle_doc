@@ -7,3 +7,5 @@
   * [truffle box](chapter1/truffle-box.md)
   * [编译合约](chapter1/bian-yi-he-yue.md)
   * [迁移](chapter1/qian-yi.md)
+  * [与合约交互](chapter1/yu-he-yue-jiao-hu.md)
+
