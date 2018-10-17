@@ -32,20 +32,18 @@ truffle compile
 
 ```
 import "./AnotherContract.sol";
-
 ```
 
-这将使所有合同都在`AnotherContract.sol`可用范围内。这里，`AnotherContract.sol`是相对于正在编写的当前合同的路径。
+这将使所有合约都在`AnotherContract.sol`可用范围内。这里，`AnotherContract.sol`是相对于正在编写的当前合同的路径。
 
 请注意，Solidity也允许其他导入语法。有关详细信息，请参阅Solidity[导入文档](http://solidity.readthedocs.org/en/latest/layout-of-source-files.html#importing-other-source-files)。
 
-### 从外部包导入合同
+### 从外部包导入合约
 
-Truffle支持通过[EthPM](https://truffleframework.com/docs/truffle/getting-started/package-management-via-ethpm)和[NPM](https://truffleframework.com/docs/truffle/getting-started/package-management-via-npm)安装的依赖项。要从依赖项导入合同，请使用以下语法
+Truffle支持通过[EthPM](https://truffleframework.com/docs/truffle/getting-started/package-management-via-ethpm)和[NPM](https://truffleframework.com/docs/truffle/getting-started/package-management-via-npm)安装的依赖项。要从依赖项导入合约，请使用以下语法
 
 ```
 import "somepackage/SomeContract.sol";
-
 ```
 
 这里，`somepackage`表示通过EthPM或NPM安装的包，表示该包提供的Solidity`SomeContract.sol`源文件。
