@@ -15,7 +15,7 @@
 * 消耗gas（以太）
 * 更改网络状态
 * 不立即处理
-* 不会公开返回值（只是一个事务ID）。
+* 不会公开返回值（只是一个交易ID）。
 
 ### 调用
 
@@ -26,11 +26,11 @@
 * 立即处理
 * 会暴露一个回报值（万岁！）
 
-在事务和调用之间进行选择就像决定是要读取数据还是写入数据一样简单。
+在交易和调用之间进行选择就像决定是要读取数据还是写入数据一样简单。
 
 ## 介绍抽象
 
-合约抽象是从Javascript与以太坊合约交互的基础和黄油。简而言之，合约抽象是一种包装代码，可以轻松地与您的合约进行交互，从而让您忘记在引擎盖下执行的许多引擎和齿轮。truffle通过[truffle合约](https://github.com/trufflesuite/truffle-contract)模块使用自己的合约抽象，这是下面描述的合约抽象。
+合约抽象是从Javascript与以太坊合约交互的基础。简而言之，合约抽象是一种包装代码，可以轻松地与您的合约进行交互，从而让您不用操作底层数据。truffle通过[truffle合约](https://github.com/trufflesuite/truffle-contract)模块使用自己的合约抽象，这是下面描述的合约抽象。
 
 然而，为了理解合约抽象的有用性，我们首先需要谈谈合约。我们将通过Truffle Boxes使用您可以使用的MetaCoin合约`truffle unbox metacoin`。
 
@@ -71,7 +71,7 @@ contract MetaCoin {
 }
 ```
 
-本合约有三种方法除了构造函数（`sendCoin`，`getBalanceInEth`，和`getBalance`）。所有这三种方法都可以作为事务或调用来执行。
+本合约有三种方法除了构造函数（`sendCoin`，`getBalanceInEth`，和`getBalance`）。所有这三种方法都可以作为交易或调用来执行。
 
 现在让我们看看`MetaCoin`Truffle为我们提供的Javascript对象，如[Truffle控制台中提供的](https://truffleframework.com/docs/truffle/getting-started/using-truffle-develop-and-the-console)：
 
@@ -128,8 +128,8 @@ MetaCoin.deployed().then(function(instance) {
   直接
   调用了抽象
   函数。
-  这将导致默认情况下的事务（即写入数据）而不是调用。
-* 当事务成功时，在处理事务之前不会触发回调函数。
+  这将导致默认情况下的交易（即写入数据）而不是调用。
+* 当交易成功时，在处理交易之前不会触发回调函数。
   这使生活变得简单，这意味着您不必自己检查交易状态。
 * 我们将一个对象作为第三个参数传递给
   `sendCoin`
@@ -139,7 +139,7 @@ MetaCoin.deployed().then(function(instance) {
   我们的Solidity合约中
   的
   函数没有第三个参数。
-  您在上面看到的是一个特殊对象，它始终可以作为最后一个参数传递给函数，该函数允许您编辑有关事务的特定详细信息。
+  您在上面看到的是一个特殊对象，它始终可以作为最后一个参数传递给函数，该函数允许您编辑有关交易的特定详细信息。
   在这里，我们设置了
   `from`
   确保此交易来自
@@ -176,7 +176,7 @@ MetaCoin.deployed().then(function(instance) {
   明确地
   执行该
   功能，让以太坊网络知道我们不打算坚持任何改变。
-* 我们在成功时收到了返回值而不是事务ID。
+* 我们在成功时收到了返回值而不是交易ID。
   请注意，由于以太坊网络可以处理非常大的数字，我们会得到一个
   [BigNumber](https://github.com/MikeMcl/bignumber.js/)
   对象，然后我们将其转换为数字。
@@ -185,7 +185,7 @@ MetaCoin.deployed().then(function(instance) {
 
 ### 抓住事件
 
-您的合约可以触发您可以捕获的事件，以便更深入地了解您的合约正在做什么。处理事件的最简单方法是处理触发事件的事务的结果对象，如下所示：
+您的合约可以触发您可以捕获的事件，以便更深入地了解您的合约正在做什么。处理事件的最简单方法是处理触发事件的交易的结果对象，如下所示：
 
 ```
 var account_one = "0x1234..."; // an address
@@ -222,7 +222,7 @@ MetaCoin.deployed().then(function(instance) {
 
 * `result.tx`
   _（字符串）_
-  * 事务哈希
+  * 交易哈希
 * `result.logs`
   _（数组）_
   * 解码事件（日志）
