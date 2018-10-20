@@ -2,7 +2,7 @@
 
 ## 介绍
 
-如果您为了与合约进行交互而自己向以太坊网络写入原始请求，您很快就会意识到编写这些请求是笨重而繁琐的。同样，您可能会发现管理您所做的每个请求的状态都很_复杂_。幸运的是，Truffle为您处理这种复杂性，使您与合同的互动变得轻而易举。
+如果您为了与合约进行交互而自己向以太坊网络写入原始请求，您很快就会意识到编写这些请求是笨重而繁琐的。同样，您可能会发现管理您所做的每个请求的状态都很_复杂_。幸运的是，Truffle为您处理这种复杂性，使您与合约的互动变得轻而易举。
 
 ## 读写数据
 
@@ -30,9 +30,9 @@
 
 ## 介绍抽象
 
-合约抽象是从Javascript与以太坊合同交互的基础和黄油。简而言之，合同抽象是一种包装代码，可以轻松地与您的合同进行交互，从而让您忘记在引擎盖下执行的许多引擎和齿轮。松露通过[松露合同](https://github.com/trufflesuite/truffle-contract)模块使用自己的合同抽象，这是下面描述的合同抽象。
+合约抽象是从Javascript与以太坊合约交互的基础和黄油。简而言之，合约抽象是一种包装代码，可以轻松地与您的合约进行交互，从而让您忘记在引擎盖下执行的许多引擎和齿轮。松露通过[松露合约](https://github.com/trufflesuite/truffle-contract)模块使用自己的合约抽象，这是下面描述的合约抽象。
 
-然而，为了理解合同抽象的有用性，我们首先需要谈谈合同。我们将通过Truffle Boxes使用您可以使用的MetaCoin合约`truffle unbox metacoin`。
+然而，为了理解合约抽象的有用性，我们首先需要谈谈合约。我们将通过Truffle Boxes使用您可以使用的MetaCoin合约`truffle unbox metacoin`。
 
 ```
 pragma solidity ^0.4.2;
@@ -71,7 +71,7 @@ contract MetaCoin {
 }
 ```
 
-本合同有三种方法除了构造函数（`sendCoin`，`getBalanceInEth`，和`getBalance`）。所有这三种方法都可以作为事务或调用来执行。
+本合约有三种方法除了构造函数（`sendCoin`，`getBalanceInEth`，和`getBalance`）。所有这三种方法都可以作为事务或调用来执行。
 
 现在让我们看看`MetaCoin`Truffle为我们提供的Javascript对象，如[Truffle控制台中提供的](https://truffleframework.com/docs/truffle/getting-started/using-truffle-develop-and-the-console)：
 
@@ -93,11 +93,11 @@ MetaCoin.deployed().then(function(instance) {
 // ...
 ```
 
-请注意，抽象包含与合同中完全相同的函数。它还包含一个指向MetaCoin合同部署版本的地址。
+请注意，抽象包含与合约中完全相同的函数。它还包含一个指向MetaCoin合约部署版本的地址。
 
-## 执行合同职能
+## 执行合约职能
 
-使用抽象，您可以轻松地在以太坊网络上执行合同功能。
+使用抽象，您可以轻松地在以太坊网络上执行合约功能。
 
 ### 进行交易
 
@@ -136,7 +136,7 @@ MetaCoin.deployed().then(function(instance) {
   。
   请注意，
   `sendCoin`
-  我们的Solidity合同中
+  我们的Solidity合约中
   的
   函数没有第三个参数。
   您在上面看到的是一个特殊对象，它始终可以作为最后一个参数传递给函数，该函数允许您编辑有关事务的特定详细信息。
@@ -185,7 +185,7 @@ MetaCoin.deployed().then(function(instance) {
 
 ### 抓住事件
 
-您的合同可以触发您可以捕获的事件，以便更深入地了解您的合同正在做什么。处理事件的最简单方法是处理触发事件的事务的结果对象，如下所示：
+您的合约可以触发您可以捕获的事件，以便更深入地了解您的合约正在做什么。处理事件的最简单方法是处理触发事件的事务的结果对象，如下所示：
 
 ```
 var account_one = "0x1234..."; // an address
@@ -234,7 +234,7 @@ MetaCoin.deployed().then(function(instance) {
 
 ### 添加新合约到网络
 
-在上述所有情况中，我们一直在使用已经部署的合同抽象。我们可以使用以下`.new()`功能将我们自己的版本部署到网络：
+在上述所有情况中，我们一直在使用已经部署的合约抽象。我们可以使用以下`.new()`功能将我们自己的版本部署到网络：
 
 ```
 MetaCoin.new().then(function(instance) {
@@ -247,7 +247,7 @@ MetaCoin.new().then(function(instance) {
 
 ### 在特定地址使用合约
 
-如果您已经拥有合同的地址，则可以创建新的抽象来表示该地址的合同。
+如果您已经拥有合约的地址，则可以创建新的抽象来表示该地址的合约。
 
 ```
 var instance = MetaCoin.at("0x1234...");
@@ -255,9 +255,9 @@ var instance = MetaCoin.at("0x1234...");
 
 ### 将以太发送到合约中
 
-您可能只想将Ether直接发送给合同，或触发合同的[后备功能](http://solidity.readthedocs.io/en/develop/contracts.html#fallback-function)。您可以使用以下两个选项之一来执行此操作。
+您可能只想将Ether直接发送给合约，或触发合约的[后备功能](http://solidity.readthedocs.io/en/develop/contracts.html#fallback-function)。您可以使用以下两个选项之一来执行此操作。
 
-选项1：通过直接向合同发送交易`instance.sendTransaction()`。这与所有可用的合同实例函数一样被保证，并且具有与`web3.eth.sendTransaction`没有回调相同的API。`to`如果未指定，将自动为您填写该值。
+选项1：通过直接向合约发送交易`instance.sendTransaction()`。这与所有可用的合约实例函数一样被保证，并且具有与`web3.eth.sendTransaction`没有回调相同的API。`to`如果未指定，将自动为您填写该值。
 
 ```
 instance.sendTransaction({...}).then(function(result) {
@@ -275,5 +275,4 @@ instance.send(web3.toWei(1, "ether")).then(function(result) {
 
 ## 进一步阅读
 
-Truffle提供的合同抽象包含大量公用事业，可以轻松地与您的合同进行交互。查看[松露合同](https://github.com/trufflesuite/truffle-contract)文档，了解提示，技巧和见解。
-
+Truffle提供的合约抽象包含大量公用事业，可以轻松地与您的合约进行交互。查看[松露合约](https://github.com/trufflesuite/truffle-contract)文档，了解提示，技巧和见解。
