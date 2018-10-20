@@ -30,7 +30,7 @@
 
 ## 介绍抽象
 
-合约抽象是从Javascript与以太坊合约交互的基础和黄油。简而言之，合约抽象是一种包装代码，可以轻松地与您的合约进行交互，从而让您忘记在引擎盖下执行的许多引擎和齿轮。松露通过[松露合约](https://github.com/trufflesuite/truffle-contract)模块使用自己的合约抽象，这是下面描述的合约抽象。
+合约抽象是从Javascript与以太坊合约交互的基础和黄油。简而言之，合约抽象是一种包装代码，可以轻松地与您的合约进行交互，从而让您忘记在引擎盖下执行的许多引擎和齿轮。truffle通过[truffle合约](https://github.com/trufflesuite/truffle-contract)模块使用自己的合约抽象，这是下面描述的合约抽象。
 
 然而，为了理解合约抽象的有用性，我们首先需要谈谈合约。我们将通过Truffle Boxes使用您可以使用的MetaCoin合约`truffle unbox metacoin`。
 
@@ -275,4 +275,4 @@ instance.send(web3.toWei(1, "ether")).then(function(result) {
 
 ## 进一步阅读
 
-Truffle提供的合约抽象包含大量公用事业，可以轻松地与您的合约进行交互。查看[松露合约](https://github.com/trufflesuite/truffle-contract)文档，了解提示，技巧和见解。
+Truffle提供的合约抽象包含大量公用事业，可以轻松地与您的合约进行交互。查看[truffle合约](https://github.com/trufflesuite/truffle-contract)文档，了解提示，技巧和见解。
