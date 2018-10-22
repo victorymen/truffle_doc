@@ -36,64 +36,13 @@ MetaMask注入了自己的`web3`实例，所以我们要确保我们检查它。
 
 ```
 // Is there is an injected web3 instance?
-if
-(
-typeof
- web3 
-!==
-'undefined'
-)
-{
-
-  App
-.
-web3Provider 
-=
- web3
-.
-currentProvider
-;
-
-  web3 
-=
-new
-Web3
-(
-web3
-.
-currentProvider
-)
-;
-}
-else
-{
-// If no injected web3 instance is detected, fallback to Ganache.
-
-  App
-.
-web3Provider 
-=
-new
-web3
-.
-providers
-.
-HttpProvider
-(
-'http://127.0.0.1:7545'
-)
-;
-
-  web3 
-=
-new
-Web3
-(
-App
-.
-web3Provider
-)
-;
+if (typeof web3 !== 'undefined') {
+  App.web3Provider = web3.currentProvider;
+  web3 = new Web3(web3.currentProvider);
+} else {
+  // If no injected web3 instance is detected, fallback to Ganache.
+  App.web3Provider = new web3.providers.HttpProvider('http://127.0.0.1:7545');
+  web3 = new Web3(App.web3Provider);
 }
 ```
 
@@ -105,7 +54,7 @@ web3Provider
 
 _MetaMask初始屏幕_
 
-单击“**导入现有DEN”**。在标记为**Wallet Seed**的框中，输入启动Ganache时显示的助记符。
+单击“Import Existing DEN**”**。在标记为**Wallet Seed**的框中，输入启动Ganache时显示的助记符。
 
 **警告**：请勿在以太网主网络（mainnet）上使用此助记符。确保将网络设置为“专用网络”（使用“自定义RPC”设置）。请参阅下文了解详情。
 
