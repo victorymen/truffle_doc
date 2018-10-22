@@ -47,9 +47,7 @@ import "example-truffle-library/contracts/SimpleNameRegistry.sol";
 
 ```
 var contract = require("truffle-contract");
-
 var data = require("example-truffle-library/build/contracts/SimpleNameRegistry.json");
-
 var SimpleNameRegistry = contract(data);
 ```
 
@@ -57,160 +55,52 @@ var SimpleNameRegistry = contract(data);
 
 ### 包的已部署地址
 
-有时您希望合同与包的先前部署的合同进行交互。由于部署的地址存在于包的`.json`文件中，因此您必须执行额外的步骤以将这些地址放入合同中。为此，请使您的合同接受依赖关系合同的地址，然后使用迁移。以下是项目中存在的示例合同以及示例迁移：
+有时您希望合约与包的先前部署的合同进行交互。由于部署的地址存在于包的`.json`文件中，因此您必须执行额外的步骤以将这些地址放入合约中。为此，请使您的合约接受依赖关系合约的地址，然后使用迁移。以下是项目中存在的示例合约以及示例迁移：
 
 合同：`MyContract.sol`
 
 ```
-pragma solidity 
-^
-0.4
-.13
-;
-import
-"example-truffle-library/contracts/SimpleNameRegistry.sol"
-;
+pragma solidity ^0.4.13;
 
-contract MyContract 
-{
+import "example-truffle-library/contracts/SimpleNameRegistry.sol";
 
-  SimpleNameRegistry registry
-;
+contract MyContract {
+  SimpleNameRegistry registry;
+  address public owner;
 
-  address 
-public
- owner
-;
-function
- MyContract 
-{
+  function MyContract {
+    owner = msg.sender;
+  }
 
-    owner 
-=
- msg
-.
-sender
-;
+  // Simple example that uses the deployed registry from the package.
+  function getModule(bytes32 name) returns (address) {
+    return registry.names(name);
+  }
+
+  // Set the registry if you're the owner.
+  function setRegistry(address addr) {
+    require(msg.sender == owner);
+
+    registry = SimpleNameRegistry(addr);
+  }
 }
-// Simple example that uses the deployed registry from the package.
-function
-getModule
-(
-bytes32 name
-)
-returns
-(
-address
-)
-{
-return
- registry
-.
-names
-(
-name
-)
-;
-}
-// Set the registry if you're the owner.
-function
-setRegistry
-(
-address addr
-)
-{
-require
-(
-msg
-.
-sender 
-==
- owner
-)
-;
 
-    registry 
-=
-SimpleNameRegistry
-(
-addr
-)
-;
-}
-}
 ```
 
-移民：`3_hook_up_example_library.js`
+迁移：`3_hook_up_example_library.js`
 
 ```
 // Note that artifacts.require takes care of creating an abstraction for us.
-var
- SimpleNameRegistry 
-=
- artifacts
-.
-require
-(
-"example-truffle-library/SimpleNameRegistry"
-)
-;
+var SimpleNameRegistry = artifacts.require("example-truffle-library/SimpleNameRegistry");
 
-module
-.
-exports
-=
-function
-(
-deployer
-)
-{
-// Deploy our contract, then set the address of the registry.
-
-  deployer
-.
-deploy
-(
-MyContract
-)
-.
-then
-(
-function
-(
-)
-{
-return
- MyContract
-.
-deployed
-(
-)
-;
-}
-)
-.
-then
-(
-function
-(
-deployed
-)
-{
-return
- deployed
-.
-setRegistry
-(
-SimpleNameRegistry
-.
-address
-)
-;
-}
-)
-;
-}
-;
+module.exports = function(deployer) {
+  // Deploy our contract, then set the address of the registry.
+  deployer.deploy(MyContract).then(function() {
+    return MyContract.deployed();
+  }).then(function(deployed) {
+    return deployed.setRegistry(SimpleNameRegistry.address);
+  });
+};
 ```
 
 ### 发布之前
