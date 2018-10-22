@@ -6,23 +6,17 @@
 
 如果你想让Truffle在触发构建时运行外部命令，只需将该选项作为字符串包含在项目配置中，如下所示：
 
-    module
-    .
-    exports
-    =
-    {
-    // This will run the `webpack` command on each build.
-    //
-    // The following environment variables will be set when running the command:
-    // WORKING_DIRECTORY: root location of the project
-    // BUILD_DESTINATION_DIRECTORY: expected destination of built assets (important for `truffle serve`)
-    // BUILD_CONTRACTS_DIRECTORY: root location of your build contract files (.sol.js)
-    //
-
-      build
-    :
-    "webpack"
+    module.exports = {
+      // This will run the `webpack` command on each build.
+      //
+      // The following environment variables will be set when running the command:
+      // WORKING_DIRECTORY: root location of the project
+      // BUILD_DESTINATION_DIRECTORY: expected destination of built assets (important for `truffle serve`)
+      // BUILD_CONTRACTS_DIRECTORY: root location of your build contract files (.sol.js)
+      //
+      build: "webpack"
     }
+
 
 请注意，您将获得足够的环境变量来与Truffle集成，如上所述。
 
@@ -30,27 +24,14 @@
 
 您还可以提供如下所示的自定义构建功能。请注意，您可以获得有关项目的大量信息，您可以使用这些信息与Truffle紧密集成。
 
-    module
-    .
-    exports
-    =
-    {
-
-      build
-    :
-    function
-    (
-    options
-    ,
-     callback
-    )
-    {
-    // Do something when a build is required. `options` contains these values:
-    //
-    // working_directory: root location of the project
-    // contracts_directory: root directory of .sol files
-    // destination_directory: directory where truffle expects the built assets (important for `truffle serve`)
-    }
+    module.exports = {
+      build: function(options, callback) {
+         // Do something when a build is required. `options` contains these values:
+         //
+         // working_directory: root location of the project
+         // contracts_directory: root directory of .sol files
+         // destination_directory: directory where truffle expects the built assets (important for `truffle serve`)
+      }
     }
 
 ## 创建自定义模块
@@ -60,29 +41,9 @@
 以下是使用Truffle默认构建器的示例：
 
 ```
-var
- DefaultBuilder
-=
-require
-(
-"truffle-default-builder"
-)
-;
-
-module
-.
-exports
-=
-{
-
-  build
-:
-new
-DefaultBuilder
-(
-...
-)
-// specify the default builder configuration here.
+var DefaultBuilder = require("truffle-default-builder");
+module.exports = {
+  build: new DefaultBuilder(...) // specify the default builder configuration here.
 }
 ```
 
@@ -104,73 +65,21 @@ DefaultBuilder
 
 ```
 // Step 1: Get a contract into my application
-var
- json
-=
-require
-(
-"./build/contracts/MyContract.json"
-)
-;
+var json = require("./build/contracts/MyContract.json");
+
 // Step 2: Turn that contract into an abstraction I can use
-var
- contract
-=
-require
-(
-"truffle-contract"
-)
-;
-var
- MyContract
-=
-contract
-(
-json
-)
-;
+var contract = require("truffle-contract");
+var MyContract = contract(json);
+
 // Step 3: Provision the contract with a web3 provider
+MyContract.setProvider(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
 
-MyContract
-.
-setProvider
-(
-new
-Web3
-.
-providers
-.
-HttpProvider
-(
-"http://127.0.0.1:8545"
-)
-)
-;
 // Step 4: Use the contract!
+MyContract.deployed().then(function(deployed) {
+  return deployed.someFunction();
+});
 
-MyContract
-.
-deployed
-(
-)
-.
-then
-(
-function
-(
-deployed
-)
-{
-return
- deployed
-.
-someFunction
-(
-)
-;
-}
-)
-;
 ```
 
 所有构建过程和合约引导都将遵循这种模式。设置自己的自定义构建过程时的关键是确保您正在使用所有合约工件并正确配置抽象。
+
