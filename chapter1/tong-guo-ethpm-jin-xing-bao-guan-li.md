@@ -83,75 +83,24 @@ $ npm install truffle-hdwallet-provider --save
 文件：`truffle.js`
 
 ```
-var
- HDWalletProvider 
-=
-require
-(
-"truffle-hdwallet-provider"
-)
-;
+var HDWalletProvider = require("truffle-hdwallet-provider");
+
 // 12-word mnemonic
-var
- mnemonic 
-=
-"opinion destroy betray ..."
-;
+var mnemonic = "opinion destroy betray ...";
 
-module
-.
-exports 
-=
-{
-
-  networks
-:
-{
-
-    development
-:
-{
-
-      host
-:
-"127.0.0.1"
-,
-
-      port
-:
-8545
-,
-
-      network_id
-:
-"*"
-// Match any network id
-}
-,
-
-    ropsten
-:
-{
-
-      provider
-:
-new
-HDWalletProvider
-(
-mnemonic
-,
-"https://ropsten.infura.io/"
-)
-,
-
-      network_id
-:
-3
-// official id of the ropsten network
-}
-}
-}
-;
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*" // Match any network id
+    },
+    ropsten: {
+      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/"),
+      network_id: 3 // official id of the ropsten network
+    }
+  }
+};
 ```
 
 ### 包配置
@@ -162,47 +111,20 @@ mnemonic
 
 ```
 {
-"package_name"
-:
-"adder"
-,
-"version"
-:
-"0.0.3"
-,
-"description"
-:
-"Simple contract to add two numbers"
-,
-"authors"
-:
-[
-"Tim Coulter 
-<
-tim.coulter@consensys.net
->
-"
-]
-,
-"keywords"
-:
-[
-"ethereum"
-,
-"addition"
-]
-,
-"dependencies"
-:
-{
-"owned"
-:
-"^0.0.1"
-}
-,
-"license"
-:
-"MIT"
+  "package_name": "adder",
+  "version": "0.0.3",
+  "description": "Simple contract to add two numbers",
+  "authors": [
+    "Tim Coulter <tim.coulter@consensys.net>"
+  ],
+  "keywords": [
+    "ethereum",
+    "addition"
+  ],
+  "dependencies": {
+    "owned": "^0.0.1"
+  },
+  "license": "MIT"
 }
 ```
 
