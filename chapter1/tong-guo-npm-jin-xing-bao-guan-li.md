@@ -26,19 +26,17 @@ Truffle包中最重要的目录如下：
 
 ```
 $ cd my_project
-
 $ npm install example-truffle-library
 ```
 
 请注意，上面的最后一个命令会下载程序包并将其放在`my_project/node_modules`目录中，这对下面的示例很重要。有关使用安装包的帮助，请参阅[npm文档](https://docs.npmjs.com/)`npm`。
 
-### 在你的合同中
+### 在你的合约中
 
 要在合约中使用包中的合约，这可以像Solidity的[import](http://solidity.readthedocs.io/en/develop/layout-of-source-files.html?#importing-other-source-files)语句一样简单。当您的导入路径不是[显式相对或绝对](https://truffleframework.com/docs/getting_started/compile#dependencies)路径时，这表示您正在寻找您正在寻找特定命名包中的文件的Truffle。使用上面提到的示例truffle库来考虑此示例：
 
 ```
 import "example-truffle-library/contracts/SimpleNameRegistry.sol";
-
 ```
 
 由于路径没有开始`./`，Truffle知道在项目的`node_modules`目录中查找该`example-truffle-library`文件夹。从那里，它解决了为您提供所需合同的路径。
@@ -221,7 +219,6 @@ address
 
 ```
 $ truffle networks --clean
-
 ```
 
 有关更多信息，请参阅[命令参考](https://truffleframework.com/docs/advanced/commands#networks)。
