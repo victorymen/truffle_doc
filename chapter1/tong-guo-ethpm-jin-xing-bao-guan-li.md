@@ -49,76 +49,17 @@ contract MyContract is owned {
 文件：`./migrations/2_deploy_contracts.js`
 
 ```
-var
-ENS
-=
- artifacts
-.
-require
-(
-"ens/ENS"
-)
-;
-var
- MyContract 
-=
- artifacts
-.
-require
-(
-"MyContract"
-)
-;
+var ENS = artifacts.require("ens/ENS");
+var MyContract = artifacts.require("MyContract");
 
-module
-.
-exports
-=
-function
-(
-deployer
-)
-{
-// Only deploy ENS if there's not already an address already.
-// i.e., don't deploy if we're using the canonical ENS address,
-// but do deploy it if we're on a test network and ENS doesn't exist.
-
-  deployer
-.
-deploy
-(
-ENS
-,
-{
-overwrite
-:
-false
-}
-)
-.
-then
-(
-function
-(
-)
-{
-return
- deployer
-.
-deploy
-(
-MyContract
-,
-ENS
-.
-address
-)
-;
-}
-)
-;
-}
-;
+module.exports = function(deployer) {
+  // Only deploy ENS if there's not already an address already.
+  // i.e., don't deploy if we're using the canonical ENS address,
+  // but do deploy it if we're on a test network and ENS doesn't exist.
+  deployer.deploy(ENS, {overwrite: false}).then(function() {
+    return deployer.deploy(MyContract, ENS.address);
+  });
+};
 ```
 
 请注意，在上面的迁移中，我们使用`ens`包并根据ENS是否已设置地址来有条件地部署ENS合同。这是[部署者](https://truffleframework.com/docs/getting_started/migrations#deployer-deploy-contract-args-options-)为您提供的一种奇特技巧，可以根据网络工件的存在更轻松地编写迁移。在这种情况下，如果我们在Ropsten网络上运行迁移，则此迁移**将不会**部署`ENS`合同，因为（在撰写本文时）Ropsten是规范`ENS`合同存在的地方 - 我们不希望部署我们自己的。但是，如果我们正在针对不同的网络或测试网络运行迁移，那么我们就要部署`ENS`合同，以便我们可以使用依赖合同。
