@@ -1,6 +1,6 @@
 # 构建流程
 
-为了能够为那些需要它的人提供与Truffle的紧密集成，Truffle允许您指定用于引导和配置应用程序的自定义构建管道。松露提供三种整合方法，如下所述。
+为了能够为那些需要它的人提供与Truffle的紧密集成，Truffle允许您指定用于引导和配置应用程序的自定义构建管道。truffle提供三种整合方法，如下所述。
 
 ## 运行外部命令
 
@@ -8,7 +8,7 @@
 
     module
     .
-    exports 
+    exports
     =
     {
     // This will run the `webpack` command on each build.
@@ -32,7 +32,7 @@
 
     module
     .
-    exports 
+    exports
     =
     {
 
@@ -61,7 +61,7 @@
 
 ```
 var
- DefaultBuilder 
+ DefaultBuilder
 =
 require
 (
@@ -71,7 +71,7 @@ require
 
 module
 .
-exports 
+exports
 =
 {
 
@@ -88,24 +88,24 @@ DefaultBuilder
 
 ## 引导您的应用程序
 
-无论您是构建要在浏览器中运行的应用程序，还是命令行工具，Javascript库或本机移动应用程序，引导您的合同都是相同的，并且使用您部署的合同工件遵循相同的一般过程，无论应用程序如何你正在建设。
+无论您是构建要在浏览器中运行的应用程序，还是命令行工具，Javascript库或本机移动应用程序，引导您的合约都是相同的，并且使用您部署的合约工件遵循相同的一般过程，无论应用程序如何你正在建设。
 
 配置构建工具或应用程序时，您需要执行以下步骤：
 
-1）将所有合同工件存入构建管道/应用程序。这包括目录中的所有`.json`文件`./build/contracts`。
+1）将所有合约工件存入构建管道/应用程序。这包括目录中的所有`.json`文件`./build/contracts`。
 
-2）`.json`通过[松露合同](https://github.com/trufflesuite/truffle-contract)将这些合同工件转换为易于使用的合同抽象。
+2）`.json`通过[truffle合约](https://github.com/trufflesuite/truffle-contract)将这些合约工件转换为易于使用的合约抽象。
 
-3）使用Web3提供程序提供这些合同抽象。在浏览器中，此提供程序可能来自[Metamask](https://metamask.io/)或[Mist](https://github.com/ethereum/mist)，但它也可能是您配置为指向[Infura](http://infura.io/)或任何其他以太坊客户端的自定义提供程序。
+3）使用Web3提供程序提供这些合约抽象。在浏览器中，此提供程序可能来自[Metamask](https://metamask.io/)或[Mist](https://github.com/ethereum/mist)，但它也可能是您配置为指向[Infura](http://infura.io/)或任何其他以太坊客户端的自定义提供程序。
 
-4）使用你的合同！
+4）使用你的合约！
 
 在Node中，这很容易做到。让我们看一个展示执行上述步骤的“最纯粹”方式的示例，因为它存在于任何构建过程或工具之外。
 
 ```
 // Step 1: Get a contract into my application
 var
- json 
+ json
 =
 require
 (
@@ -114,7 +114,7 @@ require
 ;
 // Step 2: Turn that contract into an abstraction I can use
 var
- contract 
+ contract
 =
 require
 (
@@ -122,7 +122,7 @@ require
 )
 ;
 var
- MyContract 
+ MyContract
 =
 contract
 (
@@ -173,8 +173,4 @@ someFunction
 ;
 ```
 
-所有构建过程和合同引导都将遵循这种模式。设置自己的自定义构建过程时的关键是确保您正在使用所有合同工件并正确配置抽象。
-
-  
-
-
+所有构建过程和合约引导都将遵循这种模式。设置自己的自定义构建过程时的关键是确保您正在使用所有合约工件并正确配置抽象。
