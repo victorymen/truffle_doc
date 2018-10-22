@@ -16,7 +16,7 @@
   * [编写外部脚本](chapter1/bian-xie-wai-bu-jiao-ben.md)
   * [使用BUILD PIPELINE](chapter1/shi-yong-build-pipeline.md)
 * [测试](ce-shi.md)
-  * 测试你的合约
+  * [测试你的合约](ce-shi/ce-shi-ni-de-he-yue.md)
 * [高级](gao-ji.md)
   * [网络和应用程序部署](gao-ji/wang-luo-he-ying-yong-cheng-xu-bu-shu.md)
 * 参考
