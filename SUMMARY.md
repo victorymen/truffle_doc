@@ -19,5 +19,6 @@
   * [测试你的合约](ce-shi/ce-shi-ni-de-he-yue.md)
 * [高级](gao-ji.md)
   * [网络和应用程序部署](gao-ji/wang-luo-he-ying-yong-cheng-xu-bu-shu.md)
+  * [构建流程](gao-ji/gou-jian-liu-cheng.md)
 * [参考](can-kao.md)
 
