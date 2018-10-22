@@ -7,10 +7,7 @@ EthPM是以太坊的新[包装注册表](https://www.ethpm.com/)。它遵循[ERC
 从EthPM安装软件包几乎与通过NPM安装软件包一样简单。您只需运行以下命令：
 
 ```
-$ truffle install 
-<
-package name
->
+$ truffle install <package name>
 ```
 
 您还可以在特定版本上安装软件包：
@@ -34,7 +31,6 @@ version
 
 ```
 $ truffle install
-
 ```
 
 有关该`ethpm.json`文件的更多详细信息，请参阅下面的[包配置](https://truffleframework.com/docs/getting_started/packages-ethpm#package-configuration)。
@@ -152,7 +148,6 @@ address
 
 ```
 $ npm install truffle-hdwallet-provider --save
-
 ```
 
 然后编辑您的配置以`ropsten`使用12个字的助记符添加网络：
@@ -289,7 +284,6 @@ tim.coulter@consensys.net
 
 ```
 $ truffle publish
-
 ```
 
 您将看到与下面类似的输出，并确认您的包已成功发布。
@@ -312,11 +306,7 @@ Uploading sources and publishing to registry...
 
 ```
 $ truffle networks --clean
-
 ```
 
 有关更多信息，请参阅[命令参考](https://truffleframework.com/docs/advanced/commands#networks)。
-
-  
-
 
