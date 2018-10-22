@@ -28,25 +28,19 @@ $ truffle install
 
 有关该`ethpm.json`文件的更多详细信息，请参阅下面的[包配置](https://truffleframework.com/docs/getting_started/packages-ethpm#package-configuration)。
 
-## 消费已安装的合同
+## 使用安装的合同
 
 已安装的软件包将放在`installed_contracts`项目文件夹中的目录中。如果没有`installed_contracts`目录，则会为您创建。您应该像处理`node_modules`NPM文件夹一样处理此文件夹 - 也就是说，除非您知道自己在做什么，否则不应编辑内部内容。:\)
 
-已安装的软件包可以在您的测试，迁移和可靠性合同文件中使用，`import`或者`require`通过名称来包含和收缩。例如，以下Solidity合同将从包中导入`owned.sol`文件`owned`：
+已安装的软件包可以在您的测试，迁移和可靠性合约文件中使用，`import`或者`require`通过名称来包含和收缩。例如，以下Solidity合约将从包中导入`owned.sol`文件`owned`：
 
 ```
-pragma solidity 
-^
-0.4
-.2
-;
-import
-"owned/owned.sol"
-;
+pragma solidity ^0.4.2;
 
-contract MyContract is owned 
-{
-// ...
+import "owned/owned.sol";
+
+contract MyContract is owned {
+  // ...
 }
 ```
 
