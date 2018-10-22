@@ -15,4 +15,6 @@
   * [使用TRUFFLE DEVELOP和控制台](chapter1/shi-yong-truffle-develop-he-kong-zhi-tai.md)
   * [编写外部脚本](chapter1/bian-xie-wai-bu-jiao-ben.md)
   * [使用BUILD PIPELINE](chapter1/shi-yong-build-pipeline.md)
+* [测试](ce-shi.md)
+  * 测试你的合约
 
