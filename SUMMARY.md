@@ -12,4 +12,5 @@
   * [通过ETHPM进行包管理](chapter1/tong-guo-ethpm-jin-xing-bao-guan-li.md)
   * [通过NPM进行包管理](chapter1/tong-guo-npm-jin-xing-bao-guan-li.md)
   * [调试您的合同](chapter1/diao-shi-nin-de-he-tong.md)
+  * [使用TRUFFLE DEVELOP和控制台](chapter1/shi-yong-truffle-develop-he-kong-zhi-tai.md)
 
