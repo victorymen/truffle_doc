@@ -13,14 +13,7 @@ $ truffle install <package name>
 您还可以在特定版本上安装软件包：
 
 ```
-$ truffle install 
-<
-package name
->
-@
-<
-version
->
+$ truffle install <package name>@<version>
 ```
 
 与NPM一样，EthPM版本遵循[semver](http://semver.org/)。您可以在[以太坊包注册表中](https://www.ethpm.com/registry)找到所有可用包的列表。
