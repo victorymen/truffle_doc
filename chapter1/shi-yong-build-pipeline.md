@@ -14,7 +14,3 @@ $ truffle build
 
 请注意，如果在`build`未先配置自定义生成过程的情况下尝试运行该命令，则会收到错误。
 
-看看让这个页面更好的方法？
-
-[在这里编辑»](https://github.com/trufflesuite/trufflesuite.com/edit/master/src/docs/truffle/getting-started)
-
